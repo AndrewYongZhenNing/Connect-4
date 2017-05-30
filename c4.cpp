@@ -5,13 +5,13 @@ C4::C4(){
   std::cout << "Welcome to Connect 4!" << std::endl;
   // std::cout << "Would you like to play with another player(p) or with an AI(c)? Please respond with: p/c";
   // std::cin >> _decision;
-  std::cout << "Player 1: X \nPlayer 2: 'O'" << std::endl;
+  std::cout << "Player 1: X \nPlayer 2: O" << std::endl;
 
 }
 
 C4::~C4(){}
 
-void C4::start_game(){
+void C4::play(){
   std::cout << "Game begins." << std::endl;
   // enter another line to start the game
 
@@ -24,16 +24,26 @@ void C4::start_game(){
   while(!_winner){
     if(_p1turn){ // when it is Player 1's turn
 
-      //do something
+      //Clear screen for Linux with ANSI code
+      std::cout << "\033[2J\033[1;1H";
       _noError = false;
+      board.show_board();
       while(!_noError){ // ensures that user selects the right columns
         std::cout << "Player 1: \nPlease select one of the columns:";
         std::cin >> _column;
-        if(_column <=1 || _column > 7){ // array would go out of range
+        if(_column <1 || _column > 7){ // array would go out of range
           std::cout << "Oops, that is not one of the columns!" << std::endl;
         }
         else{
-          _noError = true;
+
+          if(board.mark_board(_column,'X')){
+            _noError = true;
+          }
+
+          else{
+            std::cout << "The selected column is full!" << std::endl;
+          }
+
         }
       }
 
@@ -44,16 +54,26 @@ void C4::start_game(){
 
     else{ // when it is Player 2's turn
 
-      //do something else
+      //Clear screen for Linux with ANSI code
+      std::cout << "\033[2J\033[1;1H";
       _noError = false;
+      board.show_board();
       while(!_noError){ // ensures that user selects the right columns
         std::cout << "Player 2: \nPlease select one of the columns:";
         std::cin >> _column;
-        if(_column <=1 || _column > 7){ // array would go out of range
+        if(_column <1 || _column > 7){ // array would go out of range
           std::cout << "Oops, that is not one of the columns!" << std::endl;
         }
         else{
-          _noError = true;
+
+          if(board.mark_board(_column,'O')){
+            _noError = true;
+          }
+
+          else{
+            std::cout << "The selected column is full!" << std::endl;
+          }
+
         }
       }
 
@@ -62,10 +82,13 @@ void C4::start_game(){
     }
 
     //IF LOOP HERE TO CHECK IF THERE IS WINNER
+    std::cout << "\033[2J\033[1;1H";
+    board.show_board();
+    if(board.check_winner()){
+      _winner = true;
+    }
 
-
-    _winner = true; // NOT part of hte game, exit loop for avoiding infinite loops during testing
-  }
-
+    // _winner = true; // NOT part of hte game, exit loop for avoiding infinite loops during testing
+  }// while loop closing braces
 
 }

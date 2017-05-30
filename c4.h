@@ -12,7 +12,8 @@ class C4{
 public:
   C4();
   ~C4();
-  void start_game();
+  void play();
+  
 
 private:
   char _decision; // to be used whenever a user input is required

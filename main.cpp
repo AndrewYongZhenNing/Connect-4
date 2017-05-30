@@ -6,10 +6,10 @@
 int main(){
 
   // std::cout << "Hello world" << std::endl;
-  // C4 connect_4= C4();
-  // connect_4.start_game();
+  C4 connect_4= C4();
+  connect_4.play();
 
-  Board board = Board();
-  // std::vector<std::vector<char> > foo(6,std::vector<char>(7, ' '));
+  // Board board = Board(); // testing board
+  // board.show_board();
 
 }
