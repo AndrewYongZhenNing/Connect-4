@@ -16,7 +16,8 @@ void C4::play(){
   // enter another line to start the game
 
   //create a board here:
-  Board board = Board();
+  // Board board = Board();
+  Board board = Board(7,6);
 
   _p1turn = true; //Player 1 starts first
   _winner = false; // will let the game carry on in the while look until somebody wins

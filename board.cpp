@@ -7,12 +7,15 @@ Board::Board(){
     _board.push_back(std::vector<char> (7, ' '));
   }
 
-  // std::cout << _board.size() << std::endl;
-  // for(int j = 0; j < _board.size(); j++){
-  //   for(int k = 0; k< _board[j].size(); k++){
-  //     std::cout << _board[j][k] <<  std::endl;
-  //   }
-  //  }
+
+}
+
+Board::Board(int x_dim, int y_dim){
+  std::cout << "Creating board..." << std::endl;
+
+  for (int i = 0; i <x_dim; i++){ // row instantiation
+    _board.push_back(std::vector<char> (y_dim, ' ')); // column instantiation
+  }
 
 }
 
